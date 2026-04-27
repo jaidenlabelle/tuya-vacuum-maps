@@ -16,7 +16,7 @@ To install this integration manually, add the contents of `custom_components` to
 1. Add this repository to HACS by following this guide: [HACS: Add Custom Repository](https://www.hacs.xyz/docs/faq/custom_repositories/).
 3. Search for this integration using the HACS browser inside Home Assistant, and install.
 
-## Compatability List
+## Compatibility List
 
 This is a list of tested devices.
 Create a new [issue](https://github.com/jaidenlab/tuya-vacuum-maps/issues) to add your device.
