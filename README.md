@@ -23,11 +23,12 @@ Create a new [issue](https://github.com/jaidenlab/tuya-vacuum-maps/issues) to ad
 
 | Device                                                | Support                           |
 | ----------------------------------------------------- | --------------------------------- |
-| [Lefant M1](https://www.lefant.com/en-ca/products/m1) | $${\color{lightgreen}Supported}$$ |
-| [Lebluelu SL60D](https://lubluelu.com/product/robot-vacuum-sl60-d) | $${\color{lightgreen}Supported}$$ |
-| [Lebluelu SL68](https://www.amazon.co.uk/dp/B0CJR4Y6C2) | $${\color{lightgreen}Supported}$$ |
-| [Neatsvor X600 Pro](https://neatsvor.com/pages/x600-pro-infor) | $${\color{lightgreen}Supported}$$ |
-
+| Lefant M1 | Supported |
+| Lefant M2 Pro | Supported |
+| Lefant N3 | Supported |
+| Lebluelu SL60D | Supported |
+| Lebluelu SL68 | Supported |
+| Neatsvor X600 Pro | Supported |
 
 ## Development Environment
 
