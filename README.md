@@ -4,6 +4,19 @@
 This component adds a new camera which polls the Tuya Cloud API for the latest realtime map data.<br>
 This project is primarily focused on Lefant vacuums, but aims to support all Tuya vacuums.
 
+## Disclaimer: Supporting More Vacuums
+Adding support for new vacuums is very difficult. To quote the developer of the now-discontinued `tuya_cloud_map_extractor`:
+
+> However, compatibility with other Tuya-based vacuums is limited and often inconsistent. Adding support for new models typically requires extensive reverse engineering, decoding binary map data, and handling manufacturer-specific quirks—for each individual device or firmware version.
+
+Since I do not have access to any of these vacuums, and since they all have different protocols and map formats without any documentation, I need you to contribute to this project with the fix for your vacuum:
+
+- You can look through the code to see how it decodes the map format, and then download a map file from your vacuum to see what causes the error. See the [instructions for setting up a developement environment](#development-environment).
+- Fix the problem for your vacuum.
+- Write unit tests, and include a copy of the map and path data files for your vacuum, so that I can verify any future updates do not undo your fix.
+- Create a Pull Request to merge your fixes with this repository.
+
+
 ## Installation
 
 ### Installing Manually
