@@ -42,6 +42,7 @@ Create a new [issue](https://github.com/jaidenlab/tuya-vacuum-maps/issues) to ad
 | Lebluelu SL60D | Supported |
 | Lebluelu SL68 | Supported |
 | Neatsvor X600 Pro | Supported |
+| KaBuM! Smart 700 / Liectroux XR500 | Supported |
 
 ## Development Environment
 

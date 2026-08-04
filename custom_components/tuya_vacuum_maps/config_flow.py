@@ -4,7 +4,7 @@ import logging
 from typing import Any, override
 
 import tuya_vacuum
-from tuya_vacuum.tuya import (
+from tuya_vacuum.errors import (
     CrossRegionAccessError,
     InvalidClientIDError,
     InvalidClientSecretError,
@@ -28,11 +28,11 @@ _LOGGER = logging.getLogger(__name__)
 async def validate_input(data: dict) -> None:
     """Validate that the user input allows us to connect."""
 
-    vacuum = tuya_vacuum.TuyaVacuum(
+    vacuum = tuya_vacuum.Vacuum(
         data["server"], data["client_id"], data["client_secret"], data["device_id"]
     )
 
-    vacuum.fetch_realtime_map()
+    vacuum.fetch_map()
 
 
 class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):

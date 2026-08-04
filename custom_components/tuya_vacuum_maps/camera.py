@@ -73,7 +73,7 @@ class VacuumMapCamera(Camera):
         _LOGGER.debug("Updating image")
 
         vacuum = await self.hass.async_add_executor_job(
-            tuya_vacuum.TuyaVacuum,
+            tuya_vacuum.Vacuum,
             self._origin,
             self._client_id,
             self._client_secret,
@@ -81,7 +81,7 @@ class VacuumMapCamera(Camera):
         )
 
         # Fetch the realtime map
-        vacuum_map = vacuum.fetch_realtime_map()
+        vacuum_map = await self.hass.async_add_executor_job(vacuum.fetch_map)
 
         # Get the image
         image = vacuum_map.to_image()

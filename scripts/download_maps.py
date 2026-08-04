@@ -4,12 +4,13 @@ import os
 
 import requests
 from dotenv import load_dotenv
-from custom_components.tuya_vacuum_maps.tuya import TuyaCloudAPI
+from tuya_vacuum.tuya import TuyaCloudAPI
 
 # Load environment variables
 load_dotenv()
 
 # Get environment variables
+SERVER = os.environ.get("SERVER", "https://openapi.tuyaus.com")
 CLIENT_ID = os.environ["CLIENT_ID"]
 CLIENT_SECRET = os.environ["CLIENT_SECRET"]
 DEVICE_ID = os.environ["DEVICE_ID"]
@@ -18,11 +19,10 @@ DEVICE_ID = os.environ["DEVICE_ID"]
 def main():
     """Download the current realtime map from a vacuum using the Tuya Cloud API."""
 
-    BASE = "https://openapi.tuyaus.com"
-    ENDPOINT = f"/v1.0/users/sweepers/file/{DEVICE_ID}/realtime-map"
+    endpoint = f"/v1.0/users/sweepers/file/{DEVICE_ID}/realtime-map"
 
-    tuya = TuyaCloudAPI(base=BASE, client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
-    response = tuya.request(ENDPOINT)
+    tuya = TuyaCloudAPI(SERVER, CLIENT_ID, CLIENT_SECRET)
+    response = tuya.request("GET", endpoint)
 
     maps = response["result"]
 
@@ -31,18 +31,18 @@ def main():
 
         map_url = vacuum_map["map_url"]
         map_data = requests.get(map_url, timeout=2.5).content
+        map_type = vacuum_map["map_type"]
 
-        if vacuum_map["map_type"] == 1:
-            # Save Path Data
-            with open("path.bin", "wb") as file:
-                file.write(map_data)
-        if vacuum_map["map_type"] == 0:
-            # Save Map Data
-            with open("layout.bin", "wb") as file:
-                file.write(map_data)
+        if map_type == 1:
+            filename = "path.bin"
+        elif map_type == 0:
+            filename = "layout.bin"
         else:
-            # Unknown Map Type
-            print(f"Unknown Map Type: {vacuum_map['map_type']}")
+            filename = f"map_type_{map_type}.bin"
+            print(f"Unknown Map Type: {map_type}, saving raw data to {filename}")
+
+        with open(filename, "wb") as file:
+            file.write(map_data)
 
 
 if __name__ == "__main__":

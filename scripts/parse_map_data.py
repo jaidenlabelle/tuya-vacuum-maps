@@ -2,7 +2,9 @@
 
 import logging
 
-from custom_components.tuya_vacuum_maps.vacuum_map import VacuumMap
+from tuya_vacuum import Map
+from tuya_vacuum.map.layout import Layout
+from tuya_vacuum.map.path import Path
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -13,22 +15,11 @@ def main():
 
     with open("path.bin", "rb") as path_file:
         with open("layout.bin", "rb") as layout_file:
-            # Read each file as a hex string
-            layout_data = layout_file.read().hex()
-            path_data = path_file.read().hex()
+            layout = Layout(layout_file.read())
+            path = Path(path_file.read())
 
-            vacuum_map = VacuumMap(layout_data, path_data)
+            vacuum_map = Map(layout, path)
             map_image = vacuum_map.to_image()
-            map_image = VacuumMap.crop_image(
-                map_image,
-                410,
-                250,
-                vacuum_map.layout.origin_x,
-                vacuum_map.layout.origin_y,
-                offset_x=50,
-                offset_y=60,
-            )
-
             map_image.save("combined.png")
 
 
